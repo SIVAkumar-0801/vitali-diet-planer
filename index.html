@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitali's - Custom Indian Diet Plans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1A1A1A;
+            --bg-light: #242424;
+            --premium-gold: #C0A062;
+            --premium-gold-hover: #D4B785;
+            --text-primary: #F0F0F0;
+            --text-secondary: #A0A0A0;
+            --border-color: #3D3D3D;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+        }
+        h1, h2, h3 {
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 0.05em;
+        }
+        .horizontal-container {
+            display: flex;
+            width: 400vw;
+            height: 100vh;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .page-section {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .brand-name {
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 0.05em;
+            font-weight: 400;
+            font-size: 3rem;
+            color: var(--premium-gold);
+        }
+        .btn-primary {
+            background-color: var(--premium-gold);
+            color: #111;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(192, 160, 98, 0.2);
+        }
+        .btn-primary:hover {
+            background-color: var(--premium-gold-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 25px rgba(192, 160, 98, 0.3);
+        }
+        .btn-primary:disabled {
+            background-color: #4B5563;
+            color: var(--text-secondary);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .card {
+            background: linear-gradient(145deg, #2a2a2a, var(--bg-light));
+            border: 1px solid var(--border-color);
+            box-shadow: 8px 8px 16px #121212, -8px -8px 16px #2e2e2e;
+            max-height: 90vh;
+        }
+        .form-input, .form-select {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--premium-gold);
+            box-shadow: 0 0 0 2px var(--premium-gold-hover);
+        }
+        .loader {
+            width: 20px; height: 20px; border: 3px solid var(--premium-gold-hover); border-bottom-color: transparent;
+            border-radius: 50%; display: inline-block; box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+        .text-premium-gold { color: var(--premium-gold); }
+        .border-premium-gold { border-color: var(--premium-gold); }
+        .hover\:bg-premium-gold:hover { background-color: var(--premium-gold); color: #111;}
+        .hover\:text-premium-gold:hover { color: var(--premium-gold); }
+        
+        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        #motivation-modal { display: none; }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <header class="bg-black/30 backdrop-blur-sm fixed w-full top-0 z-10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="nav-link flex items-center" data-section="0">
+                <span class="brand-name text-2xl md:text-4xl">VITALI'S</span>
+            </a>
+            <div>
+                <a href="#" class="text-gray-300 hover:text-premium-gold px-3 py-2 rounded-md text-sm font-medium nav-link" data-section="1">Get Plan</a>
+                <a href="#" class="text-gray-300 hover:text-premium-gold px-3 py-2 rounded-md text-sm font-medium nav-link" data-section="3">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="horizontal-container" class="horizontal-container">
+        <!-- Section 1: Hero -->
+        <section class="page-section hero-bg">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-6xl font-black text-white uppercase tracking-wider">FUEL YOUR GRIND</h2>
+                <p class="text-lg md:text-xl text-gray-300 mt-4 max-w-2xl mx-auto">Affordable, <span class="text-premium-gold font-semibold">Customized Indian</span> meal plans designed for your fitness goals.</p>
+                <button class="btn-primary font-bold py-3 px-8 rounded-full mt-8 inline-block text-lg uppercase shadow-lg nav-link" data-section="1">Build Your Diet Plan</button>
+            </div>
+        </section>
+
+        <!-- Section 2: Planner -->
+        <section class="page-section" style="background-color: var(--bg-dark);">
+            <div class="container mx-auto px-6 w-full max-w-4xl">
+                <div class="text-center mb-8">
+                    <h3 class="text-3xl md:text-4xl font-bold text-premium-gold">Your Personalized Plan Generator</h3>
+                    <p style="color: var(--text-secondary);" class="mt-2">Enter your details to calculate your needs and generate the optimal meal plan.</p>
+                </div>
+                <div class="w-full p-8 rounded-2xl card overflow-y-auto">
+                    <form id="diet-form" class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
+                         <div><label for="age" class="block text-sm font-semibold mb-2">Age</label><input type="number" id="age" placeholder="e.g., 25" class="form-input w-full p-3 rounded-lg" required></div>
+                         <div><label for="gender" class="block text-sm font-semibold mb-2">Gender</label><select id="gender" class="form-select w-full p-3 rounded-lg" required><option value="male">Male</option><option value="female">Female</option></select></div>
+                         <div><label for="weight" class="block text-sm font-semibold mb-2">Weight (kg)</label><input type="number" id="weight" placeholder="e.g., 80" class="form-input w-full p-3 rounded-lg" required></div>
+                         <div><label for="height" class="block text-sm font-semibold mb-2">Height (cm)</label><input type="number" id="height" placeholder="e.g., 180" class="form-input w-full p-3 rounded-lg" required></div>
+                         <div class="md:col-span-2"><label for="activity-level" class="block text-sm font-semibold mb-2">Activity Level</label><select id="activity-level" class="form-select w-full p-3 rounded-lg" required><option value="1.2">Sedentary</option><option value="1.375">Lightly Active</option><option value="1.55">Moderately Active</option><option value="1.725">Very Active</option><option value="1.9">Super Active</option></select></div>
+                         <hr class="md:col-span-2 my-2" style="border-color: var(--border-color);">
+                         <div><label for="goal" class="block text-sm font-semibold mb-2">Primary Goal</label><select id="goal" name="goal" class="form-select w-full p-3 rounded-lg" required><option value="">Select your goal...</option><option value="Weight Loss (Cutting)">Weight Loss</option><option value="Lean Bulking">Lean Bulking</option><option value="Heavy Bulking">Heavy Bulking</option></select></div>
+                         <div><label for="preferences" class="block text-sm font-semibold mb-2">Preferences (optional)</label><input type="text" id="preferences" name="preferences" placeholder="e.g., vegetarian" class="form-input w-full p-3 rounded-lg"></div>
+                         <div class="md:col-span-2 text-center mt-4"><button type="submit" id="generate-btn" class="btn-primary font-bold py-3 px-12 rounded-full w-full md:w-auto uppercase shadow-lg flex items-center justify-center gap-3"><span id="btn-text">Create My Plan</span><span id="loader" class="loader hidden"></span></button></div>
+                    </form>
+                    <div id="calculator-result" class="mt-8 text-center hidden p-4 rounded-lg" style="background-color: rgba(26,26,26,0.5);"><p style="color: var(--text-secondary);">Your calculated daily calorie target:</p><p class="text-3xl font-bold text-premium-gold mt-2" id="tdee-result"></p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Menu Result -->
+        <section class="page-section" style="background-color: var(--bg-dark);">
+            <div class="container mx-auto px-6 text-center">
+                 <div class="mb-8">
+                    <h3 class="text-3xl md:text-4xl font-bold text-white">Your <span id="plan-title" class="text-premium-gold">Custom Plan</span></h3>
+                    <p id="result-message" style="color: var(--text-secondary);" class="mt-2">Submit the form to see your personalized diet plan.</p>
+                    <button id="motivation-btn" class="mt-6 bg-transparent border border-premium-gold text-premium-gold font-semibold py-2 px-6 rounded-full hover:bg-premium-gold transition-colors hidden">✨ Get a Motivational Tip</button>
+                </div>
+                <div id="menu-grid" class="grid grid-cols-1 gap-6 w-full max-w-4xl overflow-y-auto" style="max-height: 70vh;">
+                    <!-- Menu cards will be injected here -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 4: About & Footer -->
+        <section class="page-section" style="background-color: var(--bg-light);">
+            <div class="container mx-auto px-6 text-center max-w-3xl flex flex-col justify-center items-center h-full">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h3 class="text-3xl md:text-4xl font-bold text-premium-gold">About Vitali's</h3>
+                    <p style="color: var(--text-secondary);" class="mt-4 leading-relaxed">At Vitali's, we believe that nutrition is the cornerstone of peak performance. We're not just about food; we're about providing the vital energy your body needs to crush your gym goals. Our plans use advanced algorithms to create truly personalized and delicious recipes that make healthy eating a lifestyle, not a chore.</p>
+                </div>
+                <footer class="w-full py-6 text-center" style="color: #666;">
+                    <p>&copy; 2025 Vitali's. All Rights Reserved. Fuel Your Ambition.</p>
+                </footer>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Motivation Modal -->
+    <div id="motivation-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="rounded-2xl shadow-2xl p-8 max-w-lg w-full text-center border" style="background-color: var(--bg-light); border-color: var(--border-color);">
+            <p id="motivation-text" class="text-xl mb-6" style="color: var(--text-primary);">Loading your motivation...</p>
+            <button id="close-modal-btn" class="btn-primary font-bold py-2 px-8 rounded-full">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Navigation Logic
+        const container = document.getElementById('horizontal-container');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function slideToSection(sectionIndex) {
+            const numSections = document.querySelectorAll('.page-section').length;
+            if (sectionIndex >= 0 && sectionIndex < numSections) {
+                container.style.transform = `translateX(-${sectionIndex * 100}vw)`;
+            }
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionIndex = parseInt(link.getAttribute('data-section'));
+                slideToSection(sectionIndex);
+            });
+        });
+        
+        // Form & Diet Plan Logic
+        const dietForm = document.getElementById('diet-form');
+        const generateBtn = document.getElementById('generate-btn');
+        const btnText = document.getElementById('btn-text');
+        const loader = document.getElementById('loader');
+        const menuGrid = document.getElementById('menu-grid');
+        const planTitle = document.getElementById('plan-title');
+        const resultMessage = document.getElementById('result-message');
+        const motivationBtn = document.getElementById('motivation-btn');
+        const calculatorResultDiv = document.getElementById('calculator-result');
+        const tdeeResultEl = document.getElementById('tdee-result');
+        const motivationModal = document.getElementById('motivation-modal');
+        const motivationText = document.getElementById('motivation-text');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        // Vitali's Menu Database
+        const vitalisMenuItems = [
+            { name: "Rice with Creamy Rajma Delight", protein: "Rajma - 200gms", calories: 725, proteinG: 24 },
+            { name: "Nourishbowl Chicken and Rice", protein: "Chicken - 200gms", calories: 800, proteinG: 52 },
+            { name: "Chappathi with Paneer Burji", protein: "Paneer - 200gms", calories: 800, proteinG: 36 },
+            { name: "Chappathi with Chicken Burji", protein: "Chicken - 200gms", calories: 800, proteinG: 50 },
+            { name: "Chicken Keema Fraggy", protein: "Chicken - 200gms", calories: 750, proteinG: 48 },
+            { name: "Oats with Paneer and Chickpeas", protein: "Paneer - 200gms, Chickpeas - 150gms", calories: 800, proteinG: 42 },
+            { name: "Oats with Chicken and Chickpeas", protein: "Chicken - 200gms, Chickpeas - 150gms", calories: 800, proteinG: 55 },
+            { name: "Oatlicious Egg", protein: "Eggs", calories: 480, proteinG: 28 },
+            { name: "Chickpea Delight", protein: "Chickpeas", calories: 500, proteinG: 22 },
+            { name: "Tangy Legumes", protein: "Mixed Legumes", calories: 480, proteinG: 20 },
+            { name: "Chicken Toasties", protein: "Chicken", calories: 430, proteinG: 32 },
+            { name: "Eggstasy", protein: "Eggs", calories: 410, proteinG: 24 },
+            { name: "Chicken Oatmeal", protein: "Chicken", calories: 460, proteinG: 35 },
+            { name: "Green Chunk Salad", protein: "Soya Chunks", calories: 400, proteinG: 30 }
+        ];
+
+        // Additional Indian high-protein options
+        const supplementaryItems = [
+            { name: "Dal Makhani with Rice", protein: "Dal - 150gms", calories: 550, proteinG: 18 },
+            { name: "Chana Masala with Roti", protein: "Chickpeas - 200gms", calories: 520, proteinG: 22 },
+            { name: "Egg Bhurji with Toast", protein: "Eggs - 3", calories: 380, proteinG: 21 },
+            { name: "Soya Chunk Curry with Rice", protein: "Soya - 100gms", calories: 600, proteinG: 40 },
+            { name: "Grilled Chicken Breast", protein: "Chicken - 200gms", calories: 330, proteinG: 62 },
+            { name: "Paneer Tikka", protein: "Paneer - 150gms", calories: 400, proteinG: 27 },
+            { name: "Moong Dal Khichdi", protein: "Moong Dal - 100gms", calories: 450, proteinG: 16 },
+            { name: "Egg White Omelette", protein: "Egg Whites - 6", calories: 200, proteinG: 25 }
+        ];
+
+        function generateDietPlan(targetCalories, goal, preferences) {
+            const allItems = [...vitalisMenuItems, ...supplementaryItems];
+            const isVeg = preferences.toLowerCase().includes('veg');
+            
+            let availableItems = isVeg 
+                ? allItems.filter(item => !item.name.toLowerCase().includes('chicken') && !item.name.toLowerCase().includes('egg'))
+                : allItems;
+
+            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            const plan = {};
+            const mealsPerDay = 3;
+            const targetPerMeal = targetCalories / mealsPerDay;
+
+            days.forEach(day => {
+                const dayMeals = [];
+                const usedIndices = new Set();
+                
+                for (let i = 0; i < mealsPerDay; i++) {
+                    let attempts = 0;
+                    let selectedItem;
+                    
+                    do {
+                        const randomIndex = Math.floor(Math.random() * availableItems.length);
+                        if (!usedIndices.has(randomIndex)) {
+                            selectedItem = availableItems[randomIndex];
+                            usedIndices.add(randomIndex);
+                            break;
+                        }
+                        attempts++;
+                    } while (attempts < 50);
+                    
+                    if (selectedItem) {
+                        dayMeals.push(`${selectedItem.name} (Quantity: ${selectedItem.protein}, Calories: ~${selectedItem.calories} kcal, Protein: ~${selectedItem.proteinG}g)`);
+                    }
+                }
+                
+                plan[day] = {
+                    "Meal 1": dayMeals[0] || "Rice with Creamy Rajma Delight (Quantity: Rajma - 200gms, Calories: ~725 kcal, Protein: ~24g)",
+                    "Meal 2": dayMeals[1] || "Chickpea Delight (Quantity: Chickpeas, Calories: ~500 kcal, Protein: ~22g)",
+                    "Meal 3": dayMeals[2] || "Chappathi with Paneer Burji (Quantity: Paneer - 200gms, Calories: ~800 kcal, Protein: ~36g)"
+                };
+            });
+
+            return {
+                title: `${goal} Plan`,
+                days: plan
+            };
+        }
+
+        dietForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const age = parseFloat(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const activityFactor = parseFloat(document.getElementById('activity-level').value);
+            const goal = document.getElementById('goal').value;
+            const preferences = document.getElementById('preferences').value;
+            
+            if (!age || !gender || !weight || !height || !activityFactor || !goal) { 
+                alert('Please fill in all required fields');
+                return; 
+            }
+
+            // Calculate BMR using Mifflin-St Jeor Equation
+            let bmr = (gender === 'male') 
+                ? (10 * weight) + (6.25 * height) - (5 * age) + 5 
+                : (10 * weight) + (6.25 * height) - (5 * age) - 161;
+            const tdee = Math.round(bmr * activityFactor);
+
+            // Adjust calories based on goal
+            let targetCalories = tdee;
+            if (goal === 'Weight Loss (Cutting)') targetCalories -= 400;
+            else if (goal === 'Lean Bulking') targetCalories += 250;
+            else if (goal === 'Heavy Bulking') targetCalories += 500;
+            
+            tdeeResultEl.textContent = `${targetCalories} kcal / day`;
+            calculatorResultDiv.classList.remove('hidden');
+
+            // UI Loading State
+            generateBtn.disabled = true;
+            btnText.textContent = 'Generating...';
+            loader.classList.remove('hidden');
+            menuGrid.innerHTML = '';
+            resultMessage.classList.remove('text-red-400');
+
+            // Simulate processing time
+            setTimeout(() => {
+                const menuData = generateDietPlan(targetCalories, goal, preferences);
+                displayMenu(menuData);
+                slideToSection(2);
+                
+                generateBtn.disabled = false;
+                btnText.textContent = 'Create My Plan';
+                loader.classList.add('hidden');
+            }, 1500);
+        });
+
+        function displayMenu(menuData) {
+            planTitle.textContent = menuData.title;
+            resultMessage.textContent = "Consistency is key. Stick to the plan and watch the results unfold.";
+            resultMessage.classList.remove('text-red-400');
+            motivationBtn.classList.remove('hidden');
+            menuGrid.innerHTML = '';
+
+            const dayOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+            dayOrder.forEach(day => {
+                const dayData = menuData.days[day];
+                if (dayData) {
+                    menuGrid.innerHTML += `<div class="card rounded-xl p-6 flex flex-col"><h4 class="text-xl mb-4 text-center text-premium-gold font-bold">${day}</h4><div class="space-y-4 text-sm flex-grow" style="color: var(--text-secondary);"><p><strong>Meal 1:</strong> ${dayData["Meal 1"]}</p><p><strong>Meal 2:</strong> ${dayData["Meal 2"]}</p><p><strong>Meal 3:</strong> ${dayData["Meal 3"]}</p></div></div>`;
+                }
+            });
+        }
+
+        // Motivational Quotes
+        const motivationalQuotes = [
+            "Your strongest muscle is your will. Keep pushing forward!",
+            "Every meal is a chance to fuel your dreams. Make it count!",
+            "Discipline is choosing between what you want now and what you want most.",
+            "The body achieves what the mind believes. Stay focused!",
+            "Success is the sum of small efforts repeated day in and day out.",
+            "You don't have to be great to start, but you have to start to be great.",
+            "Your only limit is you. Break through it today!",
+            "Consistency beats perfection. Show up every single day.",
+            "The pain you feel today will be the strength you feel tomorrow.",
+            "Transform your can'ts into cans and your dreams into plans!"
+        ];
+
+        motivationBtn.addEventListener('click', () => {
+            const randomQuote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+            motivationText.textContent = randomQuote;
+            motivationModal.style.display = 'flex';
+        });
+
+        closeModalBtn.addEventListener('click', () => { 
+            motivationModal.style.display = 'none'; 
+        });
+        
+        motivationModal.addEventListener('click', (e) => { 
+            if (e.target === motivationModal) { 
+                motivationModal.style.display = 'none'; 
+            } 
+        });
+
+    </script>
+</body>
+</html>
